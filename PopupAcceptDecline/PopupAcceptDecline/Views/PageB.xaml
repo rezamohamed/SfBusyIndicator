@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="PopupAcceptDecline.Views.PageB"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:accordion="clr-namespace:Syncfusion.XForms.Accordion;assembly=Syncfusion.Expander.XForms"
+    xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
+    Title="{Binding Title}">
+
+    <StackLayout>
+        <Button
+            Command="{Binding MainPageCommand}"
+            Text="Back to Main Page" />
+
+
+        <accordion:SfAccordion
+            x:Name="Accordion"
+            ExpandMode="Single">
+            <accordion:SfAccordion.Items>
+                <accordion:AccordionItem>
+                    <accordion:AccordionItem.Header>
+                        <StackLayout>
+                            <Label Text="Header 1" />
+                        </StackLayout>
+                    </accordion:AccordionItem.Header>
+                    <accordion:AccordionItem.Content>
+                        <StackLayout>
+                            <Label Text="Content comes here!" />
+                        </StackLayout>
+                    </accordion:AccordionItem.Content>
+                </accordion:AccordionItem>
+            </accordion:SfAccordion.Items>
+        </accordion:SfAccordion>
+
+
+    </StackLayout>
+
+
+</ContentPage>
