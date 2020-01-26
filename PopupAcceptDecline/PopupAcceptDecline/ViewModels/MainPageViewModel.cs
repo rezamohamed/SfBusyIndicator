@@ -1,48 +1,41 @@
 ﻿using Prism.Navigation;
-using System.Threading.Tasks;
+using Prism.Services.Dialogs;
 using Xamarin.Forms;
 
 namespace PopupAcceptDecline.ViewModels
 {
     public class MainPageViewModel : ViewModelBase
     {
+        //private readonly IDialogService _dialogService;
 
-        //public Command ShowPopupCommand => new Command(ShowPopup);
-        public Command ShowBusyCommand => new Command(async () =>
+
+        public string ReturnMessage { get; set; }
+
+        public Command ShowPopupCommand => new Command(ShowPopup);
+
+
+
+        public MainPageViewModel(INavigationService navigationService, IDialogService dialogService)
+            : base(navigationService, dialogService)
         {
-            ShowBusy(true);
 
-            await Task.Delay(3000);
-
-            ShowBusy(false);
-        });
-
-        public Command NavigatePageBCommand => new Command(async () => await NavigationService.NavigateAsync("PageB"));
-
-
-        public MainPageViewModel(INavigationService navigationService)
-            : base(navigationService)
-        {
             Title = "Main Page";
         }
 
 
         public override void OnNavigatedTo(INavigationParameters parameters)
         {
-
-            //ShowBusy(true);
-
-            //await Task.Delay(3000);
-
-            //ShowBusy(false);
         }
 
 
-        //private void ShowPopup(object obj)
-        //{
-        //    var returnbool = DisplayAlert("Testing", "Testing accept decline", "Accept", "Decline");
+        private void ShowPopup()
+        {
+            var result = DisplayAlert("message from Main View Model");
 
-        //    ChangeLabel = returnbool.ToString();
-        //}
+            ReturnMessage = result;
+
+        }
+
+
     }
 }

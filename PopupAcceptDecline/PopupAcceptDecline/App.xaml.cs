@@ -1,4 +1,5 @@
-﻿using PopupAcceptDecline.ViewModels;
+﻿using PopupAcceptDecline.Dialogs;
+using PopupAcceptDecline.ViewModels;
 using PopupAcceptDecline.Views;
 using Prism;
 using Prism.Ioc;
@@ -21,22 +22,21 @@ namespace PopupAcceptDecline
 
         protected override async void OnInitialized()
         {
+
             InitializeComponent();
 
+            var result = await NavigationService.NavigateAsync("NavigationPage/MainPage");
 
-            //If you start here, and then click the Button to Page B this works
-            //var result = await NavigationService.NavigateAsync("NavigationPage/MainPage");
-
-
-            //If you start here, you will see a failure
-            await NavigationService.NavigateAsync("NavigationPage/PageB");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            containerRegistry.RegisterDialog<SampleDialogA, SampleDialogAViewModel>();
+
+
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
-            containerRegistry.RegisterForNavigation<PageB, PageBViewModel>();
+
         }
     }
 }

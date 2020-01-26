@@ -1,10 +1,10 @@
-using Syncfusion.XForms.iOS.Accordion;
-using Syncfusion.SfBusyIndicator.XForms.iOS;
 using Foundation;
 using Prism;
 using Prism.Ioc;
-using UIKit;
+using Syncfusion.SfBusyIndicator.XForms.iOS;
+using Syncfusion.XForms.iOS.Accordion;
 using Syncfusion.XForms.iOS.PopupLayout;
+using UIKit;
 
 
 namespace PopupAcceptDecline.iOS
@@ -24,11 +24,11 @@ namespace PopupAcceptDecline.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
-global::Xamarin.Forms.Forms.Init();
-SfAccordionRenderer.Init();
-SfBusyIndicatorRenderer.Init();
-            LoadApplication(new App(new iOSInitializer()));
+            global::Xamarin.Forms.Forms.Init();
+            SfAccordionRenderer.Init();
+            SfBusyIndicatorRenderer.Init();
             SfPopupLayoutRenderer.Init();
+            LoadApplication(new App(new iOSInitializer()));
             return base.FinishedLaunching(app, options);
         }
     }

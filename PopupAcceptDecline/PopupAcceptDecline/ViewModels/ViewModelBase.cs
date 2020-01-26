@@ -1,62 +1,43 @@
 ﻿using Prism.Mvvm;
 using Prism.Navigation;
-using Syncfusion.SfBusyIndicator.XForms;
-using Syncfusion.XForms.PopupLayout;
-using Xamarin.Forms;
+using Prism.Services.Dialogs;
 
 namespace PopupAcceptDecline.ViewModels
 {
     public class ViewModelBase : BindableBase, IInitialize, INavigationAware, IDestructible
     {
         protected INavigationService NavigationService { get; private set; }
+        protected IDialogService DialogService { get; set; } 
 
         public string Title { get; set; }
 
-        //this is used in the ShowBusy
-        private SfPopupLayout _popupLayout;
-
-        //this is used in the DisplayAlert
-        //private static bool _displayAlertAcceptDecline;
+        private  string returnResult { get; set; }
 
 
-        public ViewModelBase(INavigationService navigationService)
+        public ViewModelBase(INavigationService navigationService, IDialogService dialogService)
         {
             NavigationService = navigationService;
+            DialogService = dialogService;
 
-            _popupLayout = new SfPopupLayout();
         }
 
-
-        protected void ShowBusy(bool show)
+        protected string DisplayAlert(string message)
         {
-            if (show)
-            {
-                DataTemplate contentTemplateView = new DataTemplate(() =>
-                {
-                    StackLayout stack = new StackLayout();
-                    SfBusyIndicator _busyIndicator = new SfBusyIndicator
-                    {
-                        ViewBoxHeight = 100,
-                        ViewBoxWidth = 100,
-                        IsBusy = true
-                    };
-                    stack.Children.Add(_busyIndicator);
-                    return stack;
-                });
+            var param = new DialogParameters() { { "message", $"{message}" } };
 
-                _popupLayout.PopupView.HeaderTitle = string.Empty;
-                _popupLayout.PopupView.ContentTemplate = contentTemplateView;
-                _popupLayout.PopupView.ShowHeader = false;
-                _popupLayout.PopupView.PopupStyle.BorderColor = Color.Transparent;
-                _popupLayout.PopupView.ShowFooter = false;
-                _popupLayout.PopupView.ShowCloseButton = false;
-                _popupLayout.PopupView.AutoSizeMode = AutoSizeMode.Height;
-                _popupLayout.PopupView.BackgroundColor = Color.Transparent;
-            }
 
-            _popupLayout.IsOpen = show;
+            DialogService.ShowDialog("SampleDialogA", new DialogParameters { { "message", "Hello from Main" } }, ClosePopup);
 
+
+
+            return returnResult;
         }
+
+        private void ClosePopup(IDialogResult obj)
+        { 
+            returnResult = obj.Parameters.GetValue<string>("return");
+        }
+
 
 
 
@@ -82,38 +63,4 @@ namespace PopupAcceptDecline.ViewModels
     }
 }
 
-
-//protected bool DisplayAlert(string title, string text, string acceptButtonText, string declineButtonText = null)
-//{
-//    SfPopupLayout popupMessage = new SfPopupLayout
-//    {
-//        PopupView =
-//        {
-//            HeaderTitle = title,
-//            AcceptButtonText = declineButtonText,
-//            AcceptCommand = new Command(() => _displayAlertAcceptDecline = false),
-//            DeclineButtonText = acceptButtonText,
-//            DeclineCommand = new Command(() => _displayAlertAcceptDecline = true),
-//            AppearanceMode = declineButtonText == null ? AppearanceMode.OneButton : AppearanceMode.TwoButton,
-//            AutoSizeMode = AutoSizeMode.Height,
-//            WidthRequest = 250,
-//            ShowCloseButton = false,
-//            ContentTemplate = new DataTemplate(() =>
-//            {
-//                Label label = new Label
-//                {
-//                    HorizontalTextAlignment = TextAlignment.Center,
-//                    VerticalTextAlignment = TextAlignment.Center,
-//                    Text = text,
-//                    Padding = 25
-//                };
-//                return label;
-//            })
-//        }
-//    };
-
-//    popupMessage.Show();
-
-//    return _displayAlertAcceptDecline;
-//}
-
+ 

@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<StackLayout
+    x:Class="PopupAcceptDecline.Controls.BusyIndicator"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:popuplayout="clr-namespace:Syncfusion.XForms.PopupLayout;assembly=Syncfusion.SfPopupLayout.XForms"
+    mc:Ignorable="d">
+
+    <popuplayout:SfPopupLayout x:Name="ctrlPopupLayout">
+
+        <popuplayout:SfPopupLayout.PopupView>
+
+            <popuplayout:PopupView
+                BackgroundColor="Transparent"
+                ShowCloseButton="False"
+                ShowFooter="False"
+                ShowHeader="False">
+
+                <popuplayout:PopupView.PopupStyle>
+                    <popuplayout:PopupStyle BorderColor="Transparent" />
+                </popuplayout:PopupView.PopupStyle>
+
+                <popuplayout:PopupView.ContentTemplate>
+
+                    <DataTemplate>
+
+                        <busyindicator:SfBusyIndicator
+                            x:Name="ctrlBusyIndicator"
+                            AnimationType="Ball"
+                            IsBusy="True"
+                            ViewBoxHeight="100"
+                            ViewBoxWidth="100" />
+
+                    </DataTemplate>
+
+                </popuplayout:PopupView.ContentTemplate>
+
+            </popuplayout:PopupView>
+
+        </popuplayout:SfPopupLayout.PopupView>
+
+    </popuplayout:SfPopupLayout>
+</StackLayout>

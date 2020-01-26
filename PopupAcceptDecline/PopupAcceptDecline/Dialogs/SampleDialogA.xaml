@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<StackLayout
+    x:Class="PopupAcceptDecline.Dialogs.SampleDialogA"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+
+<Label Text="{Binding Message}"></Label>
+    <Button
+        Command="{Binding AcceptCommand}"
+        Text="Accept" />
+    <Button
+        Command="{Binding DeclineCommand}"
+        Text="Decline" />
+    <Button
+        Command="{Binding CloseCommand}"
+        Text="Close" />
+
+</StackLayout>

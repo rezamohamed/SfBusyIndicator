@@ -10,12 +10,15 @@
     <PackageReference Include="Syncfusion.Xamarin.Expander" Version="17.4.0.44" />
     <PackageReference Include="Syncfusion.Xamarin.SfBusyIndicator" Version="17.4.0.44" />
     <PackageReference Include="Syncfusion.Xamarin.SfPopupLayout" Version="17.4.0.44" />
-    <PackageReference Include="Xamarin.Forms" Version="4.4.0.991477" />
+    <PackageReference Include="Xamarin.Forms" Version="4.4.0.991537" />
     <PackageReference Include="Prism.DryIoc.Forms" Version="7.2.0.1422" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Views\PageB.xaml">
+    <EmbeddedResource Update="Controls\BusyIndicator.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Dialogs\SampleDialogA.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
